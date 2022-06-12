@@ -81,7 +81,7 @@ class Test {
     trace("Goodbye from Haxe");  
   }
 }
-```Haxe
+```
 Simple class parameters are simple but properties ( getter/setters ) are unusual. If method does not say it's public or private it is private.
 ```Haxe
 function main() ( new Test() ).haxeMessage();
