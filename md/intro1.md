@@ -20,7 +20,7 @@ function main() {
 }
 ```
 
-Haxe expects a 'main' function method as it's starting point.  We can call the js console log from a class.
+Haxe expects a 'main' function method as it's starting point.  We can call trace (  js console log for this case ) from a class.
 
 ```Haxe
 function main(){
