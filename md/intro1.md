@@ -32,13 +32,13 @@ class Test {
   }
 }
 ```
-Haxe is 'Strongly typed' but has a smart compiler and so declaring type is not always needed.
+Haxe is 'Strongly typed' but has a smart compiler and so declaring type is not always needed, notice how type information has been added and removed but with no change to how the compiler infers the code.
 ```Haxe
-function main(){
+function main():Void{
   var test = new Test();
 }
 class Test {
-  public function new(){
+  public function new():Void{
     trace("Haxe is great!"); 
   }
 }
@@ -77,12 +77,12 @@ class Test {
     */
     haxeBye();
   }
- function haxeBye(){
+ private function haxeBye(){
     trace("Goodbye from Haxe");  
   }
 }
 ```Haxe
-Simple class parameters are simple but properties ( getter/setters ) are unusual.
+Simple class parameters are simple but properties ( getter/setters ) are unusual. If method does not say it's public or private it is private.
 ```Haxe
 function main() ( new Test() ).haxeMessage();
 class Test {
@@ -135,7 +135,7 @@ class Test {
   }
 }
 ```
-we can inline methods, but we can't use the keyword on 'public var message( get, set ): String'.
-There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and  '@:isVar'. These are covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
+we can inline methods, but we can't use the keyword on ```public var message( get, set ): String;```.
+There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
 
 
