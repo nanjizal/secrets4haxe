@@ -81,6 +81,61 @@ class Test {
     trace("Goodbye from Haxe");  
   }
 }
+```Haxe
+Simple class parameters are simple but properties ( getter/setters ) are unusual.
+```Haxe
+function main() ( new Test() ).haxeMessage();
+class Test {
+  var message = "Haxe is great!";
+  public function new(){}
+  public function haxeMessage(){
+    trace(message);
+  }
+}
 ```
-Properties in Haxe are unusual.
+Getters and setters, often the var is public and the accessors are private, they need to use the 'get_' and 'set_' preface.
+```Haxe
+function main() ( new Test() ).haxeMessage();
+class Test {
+  var messageHolder = '';
+  public var message( get, set ):String;
+  function get_message(): String {
+    return messageHolder;
+  }
+  function set_message( str: String ): String {
+    messageHolder = str;
+    return str;
+  }
+  public function new(){ 
+    message = "Haxe getter setters are unusual";
+  }
+  public function haxeMessage(){
+    trace(message);
+  }
+}
+```
+Since the added function calls can be heavy we can inline them so they dissappear at runtime.
+```Haxe
+function main() ( new Test() ).haxeMessage();
+class Test {
+  var messageHolder = '';
+  public var message( get, set ):String;
+  inline function get_message(): String {
+    return messageHolder;
+  }
+  inline function set_message( str: String ): String {
+    messageHolder = str;
+    return str;
+  }
+  public function new(){ 
+    message = "Haxe getter setters are unusual";
+  }
+  public function haxeMessage(){
+    trace(message);
+  }
+}
+```
+we can inline methods, but we can't use the keyword on 'public var message( get, set ): String'.
+There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and  '@:isVar'. These are covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
+
 
