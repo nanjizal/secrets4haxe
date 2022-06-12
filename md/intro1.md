@@ -114,7 +114,7 @@ class Test {
   }
 }
 ```
-Since the added function calls can be heavy we can inline them so they dissappear at runtime.
+Since the added function calls can all add up we can inline them so they dissappear at runtime, inlining is powerful but can result in large generated code so use with caution especially on Javascript target.
 ```Haxe
 function main() ( new Test() ).haxeMessage();
 class Test {
