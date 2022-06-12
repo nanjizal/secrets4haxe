@@ -50,7 +50,7 @@ function main(){
   test.haxeGreat();
   test.haxeBye();
 }
-class Test(){
+class Test {
   public function new(){}
   public function haxeGreat(){
     trace("Haxe is great!"); 
@@ -60,3 +60,27 @@ class Test(){
   }
 }
 ```
+With haxe your methods are either public or private, private limits easy access outside the class ( with inheritance you can still access ).
+```Haxe
+function main(){
+  var test = new Test();
+  test.haxeGreat();
+  // Can't call haxeBye here !
+}
+class Test {
+  public function new(){}
+  public function haxeGreat(){
+    trace("Haxe is great!");
+    /*
+    can call haxeBye from within the class.
+    as you can see two ways to add comments in code
+    */
+    haxeBye();
+  }
+ function haxeBye(){
+    trace("Goodbye from Haxe");  
+  }
+}
+```
+Properties in Haxe are unusual.
+
