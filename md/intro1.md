@@ -138,7 +138,7 @@ class Test {
 we can inline methods, but we can't use the keyword on ```public var message( get, set ): String;```.
 There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
   
-With the latest Haxe here is a rather strange approach using an 'abstract type' 
+With the latest Haxe here is a rather strange approach using an 'abstract type', abstract types only exist at compile they are like virtual types often used to add funtionality without full cost of inheritance.
 ```Haxe
 function main() {
     var str = new Test("Haxe is Great!");
@@ -161,7 +161,7 @@ function main() {
 }
 @:initStruct
 class Test_{
-	public var message: String;
+  public var message: String;
   public function new( message: String ){
     this.message = message;
   }
@@ -188,7 +188,53 @@ abstract Test( Test_ ) from Test_ {
 }
 ```
 'cast' is used to tell the compiler to trust you and that the compiled types will work so it is rather risky.  Often with some more variables you can reduce many uses related to abstracts. Typedef are often used like a wrapper to a method or class, they can be used as a polyfill but normally when used for say a vector point often the compiler can optimise them away dependending on use.
-
-
+  
+We can't extend a type with a class so using an abstract can be powerful. But we can write the abstract type class example with inheritance as two classes.
+```Haxe
+function main() {
+  var test: Test = cast { message: "Haxe is Great!"};
+  test.trace();
+}
+@:initStruct
+class Test_{
+  public var message: String;
+  public function new( message: String ){
+    this.message = message;
+  }
+}
+class Test extends Test_ {
+  public inline function trace(){
+    trace( this.message );
+  }
+}
+```
+We can use interfaces with classes
+```Haxe
+function main() {
+  var temp: Test = new Test( "Haxe is Great!" );
+  var test: CanTrace = temp;
+  test.trace();
+  test = new Test2();
+  test.trace();
+}
+interface CanTrace {
+   public function trace():Void;
+}
+class Test implements CanTrace {
+  public var message: String;
+  public function new( message: String ){
+    this.message = message;
+  }
+  public inline function trace(){
+    trace( this.message );
+  }
+}
+class Test2 implements CanTrace {
+  public function new(){}
+	public function trace(){
+    trace( 'test2' );
+  }
+}
+```
 
 
