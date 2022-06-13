@@ -137,5 +137,58 @@ class Test {
 ```
 we can inline methods, but we can't use the keyword on ```public var message( get, set ): String;```.
 There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
+  
+With the latest Haxe here is a rather strange approach using an 'abstract type' 
+```Haxe
+function main() {
+    var str = new Test("Haxe is Great!");
+    str.trace();
+}
+abstract Test( String ) from String to String {
+  public inline function new( str: String ){
+		this = str;
+  }
+  public inline function trace(){
+    trace( abstract );
+  }
+}
+```
+A more convoluted example using also an '@:initStruct' class.
+```Haxe
+function main() {
+  var test: Test = cast { message: "Haxe is Great!"};
+  test.trace();
+}
+@:initStruct
+class Test_{
+	public var message: String;
+  public function new( message: String ){
+    this.message = message;
+  }
+}
+abstract Test( Test_ ) from Test_ {
+  public inline function trace(){
+    trace( this.message );
+  }
+}
+```
+these are often a faster implementation of a simple typedef.
+```Haxe
+function main() {
+  var test: Test = cast { message: "Haxe is Great!"};
+  test.trace();
+}
+typedef Test_ = {
+	public var message: String;
+}
+abstract Test( Test_ ) from Test_ {
+  public inline function trace(){
+    trace( this.message );
+  }
+}
+```
+'cast' is used to tell the compiler to trust you and that the compiled types will work so it is rather risky.  Often with some more variables you can reduce many uses related to abstracts. Typedef are often used like a wrapper to a method or class, they can be used as a polyfill but normally when used for say a vector point often the compiler can optimise them away dependending on use.
+
+
 
 
