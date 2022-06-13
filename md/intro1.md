@@ -141,8 +141,8 @@ There are some other options if we only want to allow get or only set, we can us
 With the latest Haxe here is a rather strange approach using an 'abstract type', abstract types only exist at compile they are like virtual types often used to add funtionality without full cost of inheritance.
 ```Haxe
 function main() {
-    var str = new Test("Haxe is Great!");
-    str.trace();
+  var str = new Test("Haxe is Great!");
+  str.trace();
 }
 abstract Test( String ) from String to String {
   public inline function new( str: String ){
@@ -179,7 +179,7 @@ function main() {
   test.trace();
 }
 typedef Test_ = {
-	public var message: String;
+  public var message: String;
 }
 abstract Test( Test_ ) from Test_ {
   public inline function trace(){
@@ -231,7 +231,7 @@ class Test implements CanTrace {
 }
 class Test2 implements CanTrace {
   public function new(){}
-	public function trace(){
+  public function trace(){
     trace( 'test2' );
   }
 }
