@@ -211,8 +211,7 @@ class Test extends Test_ {
 We can use interfaces with classes
 ```Haxe
 function main() {
-  var temp: Test = new Test( "Haxe is Great!" );
-  var test: CanTrace = temp;
+  var test: CanTrace = new Test( "Haxe is Great!" );
   test.trace();
   test = new Test2();
   test.trace();
