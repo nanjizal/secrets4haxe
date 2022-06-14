@@ -1,6 +1,6 @@
 ## Secrets 4 Haxe
 
-It is simple to test some basic Haxe in the browser.
+It is simple to test some basic Haxe in the browser. I will not explain everything but jump straight in and get a feel.
 
 Go to https://try.haxe.org/
 
@@ -11,8 +11,10 @@ class Test {
   }
 }
 ```
-
-Recent haxe allows even simpler
+press the 'build' button to see the javascript output. Haxe can be compiled to many targets and this code will do similar accross them all.
+  
+  
+Recent haxe allows even simpler creation of a Haxe project.
 
 ```Haxe
 function main() {
@@ -20,8 +22,9 @@ function main() {
 }
 ```
 
-Haxe expects a 'main' function method as it's starting point.  We can call trace (  js console log for this case ) from a class.
-
+Haxe expects a 'main' function method as it's starting point.  So 'main' is a special case, just related to a programs setup and is not needed in other classes.
+Class are created with 'new' and have a new constuctor where any defined parameters will be initialised. 
+  
 ```Haxe
 function main(){
   var test: Test = new Test();
@@ -32,7 +35,11 @@ class Test {
   }
 }
 ```
-Haxe is 'Strongly typed' but has a smart compiler and so declaring type is not always needed, notice how type information has been added and removed but with no change to how the compiler infers the code.
+  
+Haxe is 'Strongly typed' but has a smart compiler and so declaring type is not always needed.
+Notice below how type information has been added and removed but with no change to how the compiler infers the code.
+Haxe will always try to type your code even when you leave out type information. Consider to add type information when you want to provide clarity to another programmer or to resolve your type intent properly to the compiler.
+
 ```Haxe
 function main():Void{
   var test = new Test();
@@ -43,7 +50,9 @@ class Test {
   }
 }
 ```
-With class based code we often keep constructor code to a minimum and move functionality into methods.  
+  
+With class based code we often keep constructor code to a minimum and move functionality into methods.  Object Orientated programming is a way to split code into many small ideas that action on an Object ( Class ).  
+  
 ```Haxe
 function main(){
   var test = new Test();
@@ -60,7 +69,9 @@ class Test {
   }
 }
 ```
-With haxe your methods are either public or private, private limits easy access outside the class ( with inheritance you can still access ).
+  
+With haxe your methods are either public or private. Private limits easy access outside the class ( with inheritance you can still access ).
+  
 ```Haxe
 function main(){
   var test = new Test();
@@ -82,7 +93,9 @@ class Test {
   }
 }
 ```
-Simple class parameters are simple but properties ( getter/setters ) are unusual. If method does not say it's public or private it is private.
+
+Class parameters just use the 'var', variable keyword. Properties ( getter/setters ) are unusual. If method does not say it's public or private it is private, so message here is private and only accessible from methods in Test class.
+   
 ```Haxe
 function main() ( new Test() ).haxeMessage();
 class Test {
@@ -93,7 +106,9 @@ class Test {
   }
 }
 ```
-Getters and setters, often the var is public and the accessors are private, they need to use the 'get_' and 'set_' preface.
+  
+Getters and setters also use the 'var' keyword, normally 'var' is used public and the accessors are private, they need to use the 'get_' and 'set_' preface, and stard 'get' and 'set' var paramaters.  The structure is an unusual aspect of Haxe.  
+  
 ```Haxe
 function main() ( new Test() ).haxeMessage();
 class Test {
@@ -114,7 +129,9 @@ class Test {
   }
 }
 ```
-Since the added function calls can all add up we can inline them so they dissappear at runtime, inlining is powerful but can result in large generated code so use with caution especially on Javascript target.
+  
+Since the added function calls for properties can all add up to runtime delays, they can be inline so they dissappear at runtime, inlining is powerful but can result in large generated code so use with caution especially on Javascript target. Effectively inline to the compiler means that it takes the method and pastes it where it is used removing a function call. If lots of methods are inline and used a lot then the generated runtime code can be fast but very large with lots of repitition.  Inlining a method.  
+   
 ```Haxe
 function main() ( new Test() ).haxeMessage();
 class Test {
@@ -135,10 +152,14 @@ class Test {
   }
 }
 ```
-we can inline methods, but we can't use the keyword on ```public var message( get, set ): String;```.
-There are some other options if we only want to allow get or only set, we can use 'never'. 'default' can be used to save declaring some of the methods. 'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
   
-With the latest Haxe here is a rather strange approach using an 'abstract type', abstract types only exist at compile they are like virtual types often used to add funtionality without full cost of inheritance.
+we can inline methods, but we can't use them with the var property part ```public var message( get, set ): String;```, but just on the getter setter part will achieve this aim.
+There are some other options if we only want to allow get or only set, we can use 'never'.  
+'default' can be used to save declaring some of the methods.  
+'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
+  
+With the latest Haxe here is a rather strange approach using an 'abstract type', abstract types only exist at compile they are like virtual types often used to add funtionality without full cost of inheritance.  Covered here to understand they can be an alternative to a Classs, they disappear at runtime so not so useful if using Haxe as a Javascript library.
+  
 ```Haxe
 function main() {
   var str = new Test("Haxe is Great!");
@@ -153,7 +174,9 @@ abstract Test( String ) from String to String {
   }
 }
 ```
-A more convoluted example using also an '@:initStruct' class.
+  
+A more convoluted example using also an '@:initStruct' class allows Object style initialization of the class.
+
 ```Haxe
 function main() {
   var test: Test = cast { message: "Haxe is Great!"};
@@ -172,7 +195,9 @@ abstract Test( Test_ ) from Test_ {
   }
 }
 ```
-these are often a faster implementation of a simple typedef.
+  
+these are often a faster implementation of a simple typedef. Typedef are much like a label ( pointer to ) for an annonymous object structure, class or function. 
+  
 ```Haxe
 function main() {
   var test: Test = cast { message: "Haxe is Great!"};
@@ -187,9 +212,11 @@ abstract Test( Test_ ) from Test_ {
   }
 }
 ```
-'cast' is used to tell the compiler to trust you and that the compiled types will work so it is rather risky.  Often with some more variables you can reduce many uses related to abstracts. Typedef are often used like a wrapper to a method or class, they can be used as a polyfill but normally when used for say a vector point often the compiler can optimise them away dependending on use.
   
-We can't extend a type with a class so using an abstract can be powerful. But we can write the abstract type class example with inheritance as two classes.
+'cast' is used to tell the compiler to trust you and that the compiled types will work so it is rather risky.  Often with some more variables you can reduce many cast uses related to abstracts. Typedef are often used like a wrapper to a method, or class, they can be used as a polyfill but normally when used for say a vector point he compiler may be able to optimise them away dependending on use, such as when numerical values can be easily extracted.  
+   
+We can't extend a type with a class so using an abstract can be powerful. But we can write the abstract type class example with inheritance as two classes, using 'extends' keyword.   
+  
 ```Haxe
 function main() {
   var test: Test = cast { message: "Haxe is Great!"};
@@ -208,7 +235,9 @@ class Test extends Test_ {
   }
 }
 ```
-We can use interfaces with classes
+  
+We can use interfaces ( several if needed ) with classes.  
+  
 ```Haxe
 function main() {
   var test: CanTrace = new Test( "Haxe is Great!" );
