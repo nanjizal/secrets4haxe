@@ -30,23 +30,27 @@ function main(){
   var test: Test = new Test();
 }
 class Test {
+  private var message = "Haxe is Great!";
   public function new(){
-    trace("Haxe is great!"); 
+    trace(message); 
   }
 }
 ```
   
 Haxe is 'Strongly typed' but has a smart compiler and so declaring type is not always needed.
 Notice below how type information has been added and removed but with no change to how the compiler infers the code.
-Haxe will always try to type your code even when you leave out type information. Consider to add type information when you want to provide clarity to another programmer or to resolve your type intent properly to the compiler.
+Haxe will always try to type your code even when you leave out type information. Consider to add type information when you want to provide clarity to another programmer or to resolve your type intent properly to the compiler. Notice how all functions return although if they return nothing then we can Omit the Void typing and the return statement.
 
 ```Haxe
-function main():Void{
+function main(): Void{
   var test = new Test();
+  return;
 }
 class Test {
-  public function new():Void{
-    trace("Haxe is great!"); 
+  private var message: String = "Haxe is Great!";
+  public function new(): Void{
+    trace(message);
+    return;
   }
 }
 ```
@@ -130,7 +134,7 @@ class Test {
 }
 ```
   
-Since the added function calls for properties can all add up to runtime delays, they can be inline so they dissappear at runtime, inlining is powerful but can result in large generated code so use with caution especially on Javascript target. Effectively inline to the compiler means that it takes the method and pastes it where it is used removing a function call. If lots of methods are inline and used a lot then the generated runtime code can be fast but very large with lots of repitition.  Inlining a method.  
+Function calls for properties can reduce runtime speed as each function call adds time, by 'inline' the functions overhead dissappear at runtime, inlining is powerful, but can result in large generated code so use with caution especially on Javascript target. The compiler treats the inline statement as an instruction to copy the methods contents where it's called but retain scope to avoid the function call. When lots of methods are inline and used a lot and sometimes can be semi recursive, then the generated runtime code can be fast but very large with lots of repitition.  Inline requires the function only returns at the end so no early returns can be used.  Inlining a method.  
    
 ```Haxe
 function main() ( new Test() ).haxeMessage();
