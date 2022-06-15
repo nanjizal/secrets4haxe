@@ -98,7 +98,7 @@ class Test {
 }
 ```
 
-Class parameters just use the 'var', variable keyword. Properties ( getter/setters ) are unusual. If method does not say it's public or private it is private, so message here is private and only accessible from methods in Test class.
+Class parameters just use the 'var', variable keyword. Properties ( getter/setters ) are unusual. If method does not say it's public or private it is private, so message here is private and only accessible from methods in Test class.  To call a method on a instance of a class we use dot notation.  ```myInstance.myMethod(myParameter)```, notice this used in the shorted main function, since single line, wiggle brackets can be omitted if preferred.
    
 ```Haxe
 function main() ( new Test() ).haxeMessage();
