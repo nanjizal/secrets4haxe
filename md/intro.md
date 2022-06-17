@@ -1,6 +1,4 @@
-Just getting some ideas down v.early stages
-
-## Secrets 4 Haxe
+# Secrets 4 Haxe
 
 Haxe is not widely known or used programming language but pragmatically it's a great tool - a wonderful secret!
 As a self taught coder I will present Haxe 4 in my own way, hopefully it will complement other sources.
@@ -37,7 +35,8 @@ function main(){
    trace('hello world');
 }
 ```
-
+Lets dive straight in.
+[next](main.md)
 
 
 
