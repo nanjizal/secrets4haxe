@@ -35,8 +35,9 @@ function main(){
    trace('hello world');
 }
 ```
-Lets dive straight in.
-[next](main.md)
-
+Lets dive straight in.  
+  
+[next >](main.md)
+  
 
 
