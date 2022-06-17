@@ -20,6 +20,8 @@ abstract Test( String ) from String to String {
 }
 ```
   
+### initStruct, typedef emulation.  
+  
 A more convoluted example using also an '@:initStruct' class allows Object style initialization of the class.
 
 ```Haxe
@@ -41,7 +43,11 @@ abstract Test( Test_ ) from Test_ {
 }
 ```
   
-these are often a faster implementation of a simple typedef. Typedef are much like a label ( pointer to ) for an annonymous object structure, class or function. 
+these are often a faster implementation of a simple typedef. 
+  
+### Typedef, named annonymous object structures
+  
+Typedef are much like a label ( pointer to ) for an annonymous object structure, class or function. 
   
 ```Haxe
 function main() {
@@ -60,7 +66,7 @@ abstract Test( Test_ ) from Test_ {
   
 'cast' is used to tell the compiler to trust you and that the compiled types will work so it is rather risky.  Often with some more variables you can reduce many cast uses related to abstracts. Typedef are often used like a wrapper to a method, or class, they can be used as a polyfill but normally when used for say a vector point he compiler may be able to optimise them away dependending on use, such as when numerical values can be easily extracted.  
    
-We can't extend a type with a class so using an abstract can be powerful. But we can write the abstract type class example with inheritance as two classes, using 'extends' keyword.   
+We can't extend a type with a class so using an abstract can be powerful. But we can write the abstract type class example with inheritance as two classes, using 'extends' keyword. So you can separate methods that will be inlined at runtime from basic object data.  
   
 ```Haxe
 function main() {
@@ -80,6 +86,8 @@ class Test extends Test_ {
   }
 }
 ```
+  
+### Inheritance and interfaces
   
 We can use interfaces ( several if needed ) with classes.  
   
@@ -108,3 +116,6 @@ class Test2 implements CanTrace {
     trace( 'test2' );
   }
 }
+
+[next >](main3.md)
+  
