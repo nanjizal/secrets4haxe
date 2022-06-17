@@ -162,4 +162,4 @@ There are some other options if we only want to allow get or only set, we can us
 'default' can be used to save declaring some of the methods.  
 'null' and '@:isVar' are other options used, covered in haxe manual.  https://haxe.org/manual/class-field-property-rules.html
   
-[next](main2.md)
+[next >](main2.md)
