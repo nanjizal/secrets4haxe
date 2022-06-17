@@ -19,6 +19,7 @@ abstract Test( String ) from String to String {
 }
 ```
   
+  
 ### initStruct, typedef emulation.  
   
 A more convoluted example using also an '@:initStruct' class allows Object style initialization of the class.
@@ -44,6 +45,7 @@ abstract Test( Test_ ) from Test_ {
   
 these are often a faster implementation of a simple typedef. 
   
+   
 ### Typedef, named annonymous object structures
   
 Typedef are much like a label ( pointer to ) for an annonymous object structure, class or function. 
