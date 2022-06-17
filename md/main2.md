@@ -3,7 +3,7 @@
 ### Tracing using abstract type.
   
 With the latest Haxe here is a rather strange approach using an 'abstract type', abstract types only exist at compile they are like virtual types often used to add funtionality without full cost of inheritance.  Covered here to understand they can be an alternative to a Class, they disappear at runtime so not so useful if using Haxe as a Javascript library from Javascript rather than Haxe.
-  
+   
 ```Haxe
 function main() {
   var str = new Test("Haxe is Great!");
