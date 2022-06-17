@@ -116,6 +116,6 @@ class Test2 implements CanTrace {
     trace( 'test2' );
   }
 }
-
+```
 [next >](main3.md)
   
