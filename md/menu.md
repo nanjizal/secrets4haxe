@@ -2,6 +2,6 @@
 
 #### Menu
 
-- (intro.md)
-- (main.md)
-- (main2.md)
+- [intro](intro.md)
+- [main](main.md)
+- [main 2](main2.md)
